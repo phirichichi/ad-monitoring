@@ -2,8 +2,8 @@ import { useState } from "react";
 import { login } from "../../api/auth";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("admin@example.com");
-  const [password, setPassword] = useState("ChangeMe123!");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -13,12 +13,15 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const tokens = await login({ email, password });
+      const tokens = await login({
+        email: email.trim(),
+        password,
+      });
 
       localStorage.setItem("access_token", tokens.access_token);
       localStorage.setItem("refresh_token", tokens.refresh_token);
 
-      window.location.reload(); // refresh to trigger authenticated view
+      window.location.reload();
     } catch (err: unknown) {
       if (err instanceof Error) {
         setError(err.message);
@@ -44,7 +47,9 @@ export default function LoginPage() {
               onChange={(e) => setEmail(e.target.value)}
               type="email"
               required
+              autoComplete="username"
               style={styles.input}
+              placeholder="you@example.com"
             />
           </div>
 
@@ -55,7 +60,9 @@ export default function LoginPage() {
               onChange={(e) => setPassword(e.target.value)}
               type="password"
               required
+              autoComplete="current-password"
               style={styles.input}
+              placeholder="Enter your password"
             />
           </div>
 

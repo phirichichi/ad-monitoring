@@ -9,12 +9,12 @@ import ReportsPage from "./pages/ReportsPage";
 import UsersPage from "./pages/UsersPage";
 import PlaylistsPage from "./pages/PlaylistsPage";
 
-type UserRole = "admin" | "operator" | "client_admin" | "client_viewer";
+type UserRole = "admin" | "operator" | "client";
 type TokenType = "access" | "refresh";
 
 type JWTPayload = {
   sub: string;
-  role: UserRole;
+  role: UserRole | string;
   type?: TokenType;
   iat?: number;
   exp?: number;

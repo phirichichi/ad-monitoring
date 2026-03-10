@@ -1,18 +1,21 @@
+//frontend/src/features/admin/pages/UsersPage.tsx
 import { useEffect, useMemo, useState } from "react";
 import { AdminApi } from "../../../api/admin";
 import type { CreateUserRequest, User, UserRole } from "../../../api/types";
 
-const ROLES: UserRole[] = ["admin", "operator", "client_admin", "client_viewer"];
+const ROLES: UserRole[] = ["admin", "operator", "client"];
 
 export default function UsersPage() {
   const [items, setItems] = useState<User[]>([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState<UserRole>("client_viewer");
+  const [role, setRole] = useState<UserRole>("client");
   const [err, setErr] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const canCreate = useMemo(() => email.trim().includes("@") && password.length >= 6, [email, password]);
+  const canCreate = useMemo(() => {
+    return email.trim().includes("@") && password.length >= 6;
+  }, [email, password]);
 
   async function load() {
     setErr(null);
@@ -29,6 +32,7 @@ export default function UsersPage() {
 
   async function onCreate() {
     if (!canCreate) return;
+
     setLoading(true);
     setErr(null);
 
@@ -42,7 +46,7 @@ export default function UsersPage() {
       await AdminApi.createUser(payload);
       setEmail("");
       setPassword("");
-      setRole("client_viewer");
+      setRole("client");
       await load();
     } catch (e: unknown) {
       setErr(e instanceof Error ? e.message : "Failed to create user");
@@ -67,17 +71,32 @@ export default function UsersPage() {
         <div style={styles.formGrid}>
           <label style={styles.label}>
             Email
-            <input value={email} onChange={(e) => setEmail(e.target.value)} style={styles.input} placeholder="user@example.com" />
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              style={styles.input}
+              placeholder="user@example.com"
+            />
           </label>
 
           <label style={styles.label}>
             Password
-            <input value={password} onChange={(e) => setPassword(e.target.value)} style={styles.input} type="password" placeholder="min 6 chars" />
+            <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              style={styles.input}
+              type="password"
+              placeholder="min 6 chars"
+            />
           </label>
 
           <label style={styles.label}>
             Role
-            <select value={role} onChange={(e) => setRole(e.target.value as UserRole)} style={styles.select}>
+            <select
+              value={role}
+              onChange={(e) => setRole(e.target.value as UserRole)}
+              style={styles.select}
+            >
               {ROLES.map((r) => (
                 <option key={r} value={r}>
                   {r}
@@ -87,7 +106,11 @@ export default function UsersPage() {
           </label>
 
           <div style={{ display: "flex", alignItems: "flex-end" }}>
-            <button style={styles.primaryBtn} disabled={loading || !canCreate} onClick={() => void onCreate()}>
+            <button
+              style={styles.primaryBtn}
+              disabled={loading || !canCreate}
+              onClick={() => void onCreate()}
+            >
               {loading ? "Creating..." : "Create User"}
             </button>
           </div>
@@ -111,7 +134,9 @@ export default function UsersPage() {
                   <td style={styles.td}>{u.email}</td>
                   <td style={styles.td}>{u.role}</td>
                   <td style={styles.td}>{u.is_active ? "Yes" : "No"}</td>
-                  <td style={{ ...styles.td, fontFamily: "monospace", fontSize: 12 }}>{u.id}</td>
+                  <td style={{ ...styles.td, fontFamily: "monospace", fontSize: 12 }}>
+                    {u.id}
+                  </td>
                 </tr>
               ))}
               {!items.length && (

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import List, Literal, Optional
+from typing import List, Literal
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, HTTPException, status
@@ -15,13 +15,13 @@ from app.infrastructure.db.models.user import User
 
 router = APIRouter(prefix="/users", tags=["users"])
 
-UserRole = Literal["admin", "operator", "client_admin", "client_viewer"]
+UserRole = Literal["admin", "operator", "client"]
 
 
 class UserCreate(BaseModel):
     email: EmailStr
     password: str = Field(..., min_length=6, max_length=128)
-    role: UserRole = "client_viewer"
+    role: UserRole = "client"
     is_active: bool = True
 
 
@@ -43,8 +43,6 @@ async def list_users(db: AsyncSession = Depends(get_db)) -> List[UserOut]:
 
 @router.post("", response_model=UserOut, status_code=status.HTTP_201_CREATED)
 async def create_user(payload: UserCreate, db: AsyncSession = Depends(get_db)) -> UserOut:
-    # If your model uses "email" this is fine; if it uses "username", adjust here.
-    # Based on your earlier errors, your User has `email` and `password_hash`.
     user = User(
         email=str(payload.email).strip().lower(),
         password_hash=get_password_hash(payload.password),

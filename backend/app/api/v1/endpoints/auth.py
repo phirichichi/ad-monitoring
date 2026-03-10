@@ -1,7 +1,5 @@
-# app/api/v1/endpoints/auth.py
-
 from fastapi import APIRouter, Depends, HTTPException, status
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -11,27 +9,59 @@ from app.infrastructure.db.models.user import User
 
 router = APIRouter()
 
+
 class LoginRequest(BaseModel):
-    email: str
+    email: EmailStr
     password: str
+
+
+def normalize_role(value: object) -> str:
+    if value is None:
+        return "client"
+
+    role = str(value).strip().lower()
+
+    if role == "admin":
+        return "admin"
+
+    if role == "operator":
+        return "operator"
+
+    if role == "client":
+        return "client"
+
+    return "client"
+
 
 @router.post("/auth/login")
 async def login(payload: LoginRequest, db: AsyncSession = Depends(get_db)):
-    res = await db.execute(select(User).where(User.email == payload.email))
+    normalized_email = str(payload.email).strip().lower()
+
+    res = await db.execute(select(User).where(User.email == normalized_email))
     user = res.scalar_one_or_none()
 
-    # ✅ use password_hash (your model field)
     if not user or not verify_password(payload.password, user.password_hash):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid email or password",
         )
 
-    if hasattr(user, "is_active") and not user.is_active:
-        raise HTTPException(status_code=403, detail="Inactive account")
+    if not user.is_active:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Inactive account",
+        )
 
-    access = create_access_token(subject=str(user.id), role=getattr(user, "role", "client_viewer"))
-    refresh = create_refresh_token(subject=str(user.id), role=getattr(user, "role", "client_viewer"))
+    normalized_role = normalize_role(user.role)
+
+    access = create_access_token(
+        subject=str(user.id),
+        role=normalized_role,
+    )
+    refresh = create_refresh_token(
+        subject=str(user.id),
+        role=normalized_role,
+    )
 
     return {
         "access_token": access,
