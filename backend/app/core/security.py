@@ -1,20 +1,27 @@
-# app/core/security.py
-from datetime import datetime, timedelta, timezone
-from typing import Any, Optional, Dict
+from __future__ import annotations
 
-from jose import jwt, JWTError
+from datetime import datetime, timedelta, timezone
+from typing import Any, Optional
+
+from jose import JWTError, jwt
 from passlib.context import CryptContext
 
-from app.core.config import settings  # ✅ uses your settings (JWT secret, algo, expiry)
+from app.core.config import settings
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
 def get_password_hash(password: str) -> str:
+    """
+    Hash a plaintext password using bcrypt.
+    """
     return pwd_context.hash(password)
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
+    """
+    Verify a plaintext password against a stored bcrypt hash.
+    """
     return pwd_context.verify(plain_password, hashed_password)
 
 
@@ -27,19 +34,27 @@ def create_token(
     expires_delta: timedelta,
     token_type: str,
 ) -> str:
+    """
+    Create a JWT token with standard auth claims.
+    """
     now = datetime.now(timezone.utc)
     expire = now + expires_delta
-    to_encode: Dict[str, Any] = {
+
+    to_encode: dict[str, Any] = {
         "sub": subject,
         "role": role,
-        "type": token_type,  # "access" | "refresh"
+        "type": token_type,  # "access" or "refresh"
         "iat": int(now.timestamp()),
         "exp": int(expire.timestamp()),
     }
+
     return jwt.encode(to_encode, secret_key, algorithm=algorithm)
 
 
 def create_access_token(*, subject: str, role: str) -> str:
+    """
+    Create a short-lived access token.
+    """
     return create_token(
         subject=subject,
         role=role,
@@ -51,6 +66,9 @@ def create_access_token(*, subject: str, role: str) -> str:
 
 
 def create_refresh_token(*, subject: str, role: str) -> str:
+    """
+    Create a longer-lived refresh token.
+    """
     return create_token(
         subject=subject,
         role=role,
@@ -61,8 +79,18 @@ def create_refresh_token(*, subject: str, role: str) -> str:
     )
 
 
-def decode_token(token: str) -> Optional[dict]:
+def decode_token(token: str) -> Optional[dict[str, Any]]:
+    """
+    Decode a JWT token using the configured secret and algorithm.
+
+    Returns None if invalid or expired.
+    """
     try:
-        return jwt.decode(token, settings.JWT_SECRET_KEY, algorithms=[settings.JWT_ALGORITHM])
+        payload = jwt.decode(
+            token,
+            settings.JWT_SECRET_KEY,
+            algorithms=[settings.JWT_ALGORITHM],
+        )
+        return payload
     except JWTError:
         return None

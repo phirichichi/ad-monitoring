@@ -1,0 +1,250 @@
+/* frontend/src/styles/operator/MonitoringPage.css */
+
+.operator-monitoring-page {
+  padding: 18px;
+}
+
+.operator-monitoring-error-wrap {
+  margin-bottom: 16px;
+}
+
+.operator-monitoring-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.operator-monitoring-grid-two {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.operator-monitoring-grid-two-bottom {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  gap: 16px;
+}
+
+.operator-monitoring-metric-value {
+  font-size: 28px;
+  font-weight: 800;
+  color: #0d47a1;
+  line-height: 1.1;
+}
+
+.operator-monitoring-metric-label {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #555;
+  font-weight: 600;
+}
+
+.operator-monitoring-channel-list {
+  display: grid;
+  gap: 12px;
+}
+
+.operator-monitoring-channel-row {
+  border: 1px solid #eef2f7;
+  border-radius: 12px;
+  padding: 12px;
+  background: #fbfcff;
+}
+
+.operator-monitoring-channel-main {
+  display: grid;
+  gap: 10px;
+}
+
+.operator-monitoring-channel-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.operator-monitoring-channel-name {
+  color: #0f172a;
+  font-size: 15px;
+}
+
+.operator-monitoring-channel-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  color: #475569;
+}
+
+.operator-monitoring-alert-list {
+  display: grid;
+  gap: 10px;
+}
+
+.operator-monitoring-alert-item {
+  border-radius: 10px;
+  padding: 12px;
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  color: #7c5a00;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.operator-monitoring-muted {
+  color: #666;
+  font-size: 13px;
+}
+
+.operator-monitoring-muted-inline {
+  color: #666;
+  font-size: 12px;
+}
+
+.operator-monitoring-table-wrap {
+  overflow-x: auto;
+}
+
+.operator-monitoring-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.operator-monitoring-th {
+  text-align: left;
+  padding: 10px;
+  font-size: 13px;
+  color: #334155;
+  border-bottom: 1px solid #eef2f7;
+}
+
+.operator-monitoring-tr {
+  border-top: 1px solid #f0f2f5;
+}
+
+.operator-monitoring-td {
+  padding: 10px;
+  font-size: 13px;
+  color: #111;
+  vertical-align: top;
+}
+
+.operator-monitoring-td-mono {
+  padding: 10px;
+  font-size: 12px;
+  color: #111;
+  font-family: monospace;
+  vertical-align: top;
+}
+
+.operator-monitoring-evidence-list {
+  display: grid;
+  gap: 12px;
+}
+
+.operator-monitoring-evidence-item {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 12px;
+  border: 1px solid #eef2f7;
+  border-radius: 12px;
+  padding: 12px;
+  background: #fbfcff;
+  align-items: center;
+}
+
+.operator-monitoring-evidence-thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+  background: #eaf2ff;
+  border: 1px solid #cfe1ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0d47a1;
+  font-weight: 800;
+  font-size: 12px;
+}
+
+.operator-monitoring-evidence-body {
+  min-width: 0;
+}
+
+.operator-monitoring-evidence-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.operator-monitoring-evidence-meta {
+  font-size: 12px;
+  color: #64748b;
+  word-break: break-word;
+  line-height: 1.5;
+}
+
+.operator-monitoring-evidence-strong {
+  font-weight: 700;
+}
+
+.operator-monitoring-link {
+  color: #0d47a1;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.operator-monitoring-secondary-btn {
+  background: #eaf2ff;
+  color: #0d47a1;
+  border: 1px solid #cfe1ff;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.operator-monitoring-secondary-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 1100px) {
+  .operator-monitoring-summary-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .operator-monitoring-grid-two,
+  .operator-monitoring-grid-two-bottom {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .operator-monitoring-page {
+    padding: 14px;
+  }
+
+  .operator-monitoring-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .operator-monitoring-channel-name-row {
+    align-items: flex-start;
+  }
+
+  .operator-monitoring-evidence-item {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .operator-monitoring-summary-grid {
+    grid-template-columns: 1fr;
+  }
+}

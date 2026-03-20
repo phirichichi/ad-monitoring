@@ -1,0 +1,231 @@
+/* frontend/src/styles/operator/ReportsPage.css */
+
+.operator-reports-page {
+  padding: 18px;
+}
+
+.operator-reports-message-wrap {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.operator-reports-success-box {
+  background: #e8f5e9;
+  border: 1px solid #c8e6c9;
+  padding: 10px;
+  border-radius: 10px;
+  color: #1b5e20;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.operator-reports-form-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.operator-reports-label {
+  font-size: 12px;
+  color: #444;
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+}
+
+.operator-reports-input,
+.operator-reports-select {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #d0d7e2;
+  background: #fff;
+  outline: none;
+}
+
+.operator-reports-check-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.operator-reports-check-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #333;
+  font-size: 13px;
+}
+
+.operator-reports-action-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.operator-reports-primary-btn,
+.operator-reports-secondary-btn {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.operator-reports-primary-btn {
+  background: #1976d2;
+  color: #fff;
+}
+
+.operator-reports-secondary-btn {
+  background: #eaf2ff;
+  color: #0d47a1;
+  border: 1px solid #cfe1ff;
+}
+
+.operator-reports-primary-btn:disabled,
+.operator-reports-secondary-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.operator-reports-warning-box {
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  color: #7c5a00;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.operator-reports-preview-panel {
+  margin-top: 2px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #fbfcff;
+  border: 1px solid #eef2f7;
+  font-size: 13px;
+  color: #222;
+  display: grid;
+  gap: 8px;
+  word-break: break-word;
+}
+
+.operator-reports-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.operator-reports-summary-card {
+  border: 1px solid #eef2f7;
+  border-radius: 12px;
+  background: #fbfcff;
+  padding: 12px;
+}
+
+.operator-reports-summary-value {
+  font-size: 24px;
+  font-weight: 800;
+  color: #0d47a1;
+  line-height: 1.1;
+}
+
+.operator-reports-summary-label {
+  margin-top: 6px;
+  color: #555;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.operator-reports-hint {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #666;
+}
+
+.operator-reports-muted {
+  color: #666;
+  font-size: 13px;
+}
+
+.operator-reports-subtext {
+  margin-top: 4px;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.operator-reports-link {
+  color: #0d47a1;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.operator-reports-table-wrap {
+  overflow-x: auto;
+}
+
+.operator-reports-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.operator-reports-th {
+  text-align: left;
+  padding: 10px;
+  font-size: 13px;
+  color: #334155;
+  border-bottom: 1px solid #eef2f7;
+  vertical-align: top;
+}
+
+.operator-reports-tr {
+  border-top: 1px solid #f0f2f5;
+}
+
+.operator-reports-td,
+.operator-reports-td-mono {
+  padding: 10px;
+  font-size: 13px;
+  color: #111;
+  vertical-align: top;
+}
+
+.operator-reports-td-mono {
+  font-family: monospace;
+  font-size: 12px;
+}
+
+@media (max-width: 1100px) {
+  .operator-reports-form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .operator-reports-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .operator-reports-page {
+    padding: 14px;
+  }
+
+  .operator-reports-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .operator-reports-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .operator-reports-action-row {
+    flex-direction: column;
+  }
+}

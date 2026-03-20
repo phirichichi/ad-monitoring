@@ -1,0 +1,251 @@
+/* frontend/src/styles/operator/PlaylistsPage.css */
+
+.operator-playlists-page {
+  padding: 18px;
+}
+
+.operator-playlists-message-wrap {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.operator-playlists-success-box {
+  background: #e8f5e9;
+  border: 1px solid #c8e6c9;
+  padding: 10px;
+  border-radius: 10px;
+  color: #1b5e20;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.operator-playlists-grid-two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.operator-playlists-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.operator-playlists-label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  color: #444;
+  font-weight: 600;
+}
+
+.operator-playlists-input {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #d0d7e2;
+  outline: none;
+  background: #fff;
+}
+
+.operator-playlists-action-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.operator-playlists-primary-btn {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.operator-playlists-secondary-btn {
+  background: #eaf2ff;
+  color: #0d47a1;
+  border: 1px solid #cfe1ff;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.operator-playlists-small-ghost-btn {
+  background: #fff;
+  color: #0d47a1;
+  border: 1px solid #cfe1ff;
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.operator-playlists-small-danger-btn {
+  background: #fff5f7;
+  color: #b00020;
+  border: 1px solid #f2b8c6;
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.operator-playlists-summary-panel {
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #fbfcff;
+  border: 1px solid #eef2f7;
+  font-size: 13px;
+  color: #222;
+  display: grid;
+  gap: 8px;
+  word-break: break-word;
+}
+
+.operator-playlists-selected-ad-panel {
+  margin-top: 2px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #fbfcff;
+  border: 1px solid #eef2f7;
+  font-size: 13px;
+  color: #222;
+  display: grid;
+  gap: 8px;
+  word-break: break-word;
+}
+
+.operator-playlists-selected-ad-title {
+  font-weight: 700;
+  color: #0d47a1;
+}
+
+.operator-playlists-warning-box {
+  margin-top: 14px;
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  padding: 12px;
+  border-radius: 10px;
+  color: #7c5a00;
+  font-size: 13px;
+}
+
+.operator-playlists-warning-title {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.operator-playlists-conflict-list {
+  margin: 8px 0 0 18px;
+  padding: 0;
+}
+
+.operator-playlists-muted {
+  color: #666;
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.operator-playlists-group-list {
+  display: grid;
+  gap: 14px;
+}
+
+.operator-playlists-group-card {
+  border: 1px solid #eef2f7;
+  border-radius: 12px;
+  background: #fbfcff;
+  padding: 12px;
+}
+
+.operator-playlists-group-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0d47a1;
+  margin-bottom: 10px;
+}
+
+.operator-playlists-table-wrap {
+  overflow-x: auto;
+}
+
+.operator-playlists-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.operator-playlists-th {
+  text-align: left;
+  padding: 10px;
+  font-size: 13px;
+  color: #334155;
+  border-bottom: 1px solid #eef2f7;
+  vertical-align: top;
+}
+
+.operator-playlists-tr {
+  border-top: 1px solid #f0f2f5;
+}
+
+.operator-playlists-td {
+  padding: 10px;
+  font-size: 13px;
+  color: #111;
+  vertical-align: top;
+}
+
+.operator-playlists-td-mono {
+  padding: 10px;
+  font-size: 12px;
+  color: #111;
+  font-family: monospace;
+  vertical-align: top;
+}
+
+.operator-playlists-actions-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.operator-playlists-hint {
+  margin-top: 14px;
+  font-size: 12px;
+  color: #666;
+}
+
+.operator-playlists-primary-btn:disabled,
+.operator-playlists-secondary-btn:disabled,
+.operator-playlists-small-ghost-btn:disabled,
+.operator-playlists-small-danger-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+  .operator-playlists-grid-two,
+  .operator-playlists-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .operator-playlists-page {
+    padding: 14px;
+  }
+
+  .operator-playlists-action-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
